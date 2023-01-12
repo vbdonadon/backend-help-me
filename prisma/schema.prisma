@@ -8,9 +8,11 @@ datasource db {
 }
 
 model Tasks {
-  id          String  @id @default(uuid())
+  id          String    @id @default(uuid())
   name        String
   description String?
+  created_at  DateTime  @default(now())
+  end_at      DateTime?
 
   id_author String
   author    Authors @relation(fields: [id_author], references: [id])
@@ -19,12 +21,19 @@ model Tasks {
 }
 
 model Authors {
-  id       String @id @default(uuid())
-  name     String
-  username String @unique
-  password String
+  id         String   @id @default(uuid())
+  name       String
+  username   String   @unique
+  password   String
+  created_at DateTime @default(now())
 
   task Tasks[]
 
   @@map("authors")
+}
+
+model Category {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
 }

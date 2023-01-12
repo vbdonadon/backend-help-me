@@ -18,7 +18,9 @@ export class FindAllUseCase {
         },
         id: true,
         name: true,        
-        description: true
+        description: true,
+        created_at: true,
+        end_at: true
       }
     });
 
