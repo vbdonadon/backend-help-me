@@ -6,6 +6,7 @@ import { CreateAuthorController } from "./modules/authors/useCases/Create/Create
 import { CreateTaskController } from "./modules/tasks/useCases/Create/CreateTaskController";
 
 import { CompleteTaskController } from "./modules/tasks/useCases/Complete/CompleteTaskController";
+import { UpdateAuthorController } from "./modules/authors/useCases/Update/UpdateAuthorController";
 
 import { AuthenticateAuthorController } from "./modules/account/authenticateAuthor/AuthenticateAuthorController";
 
@@ -21,6 +22,7 @@ const createAuthorController = new CreateAuthorController();
 const createTaskController = new CreateTaskController();
 
 const completeTaskController = new CompleteTaskController();
+const updateAuthorController = new UpdateAuthorController();
 
 const authenticateAuthorController = new AuthenticateAuthorController();
 
@@ -32,6 +34,7 @@ routes.post("/author/create/", createAuthorController.handle);
 routes.post("/task/create", ensureAuthenticateAuthor, createTaskController.handle);
 
 routes.put("/task/complete/:id", ensureAuthenticateAuthor, completeTaskController.handle);
+routes.put("/author/update/", ensureAuthenticateAuthor, updateAuthorController.handle);
 
 routes.post("/author/authenticate/", authenticateAuthorController.handle);
 
